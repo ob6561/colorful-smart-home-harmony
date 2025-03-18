@@ -63,7 +63,7 @@ const Clock: React.FC = () => {
   
   return (
     <div 
-      className="glass rounded-2xl p-6 mb-8 animate-scale-in backdrop-blur-lg border border-white/40 shadow-xl"
+      className="glass rounded-2xl p-6 mb-8 animate-scale-in backdrop-blur-lg border border-white/40 shadow-xl dark:border-gray-700/40"
       style={{ 
         background: getTimeBasedGradient(),
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
@@ -71,9 +71,7 @@ const Clock: React.FC = () => {
     >
       <div className="flex flex-col items-center">
         <p className="text-sm font-medium text-black opacity-90">{formatDate(time)}</p>
-        <h2 
-          className="text-4xl font-bold mt-2 tracking-tight text-black"
-        >
+        <h2 className="text-4xl font-bold mt-2 tracking-tight text-black">
           {formatTime(time)}
         </h2>
       </div>

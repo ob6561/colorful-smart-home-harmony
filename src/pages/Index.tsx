@@ -19,11 +19,7 @@ const Index = () => {
   
   return (
     <div 
-      className="min-h-screen px-6 py-6 max-w-6xl mx-auto"
-      style={{
-        backgroundImage: "linear-gradient(109.6deg, rgba(223,234,247,1) 11.2%, rgba(244,248,252,1) 91.1%)",
-        backgroundAttachment: "fixed"
-      }}
+      className="min-h-screen px-6 py-6 max-w-6xl mx-auto bg-background dark:bg-background"
     >
       <Header />
       
@@ -34,7 +30,7 @@ const Index = () => {
           <div className="mb-10" key={room}>
             <div className="flex items-center mb-4">
               <div className="h-8 w-1 bg-gradient-to-b from-primary to-primary/30 rounded-full mr-3"></div>
-              <h2 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-700 to-gray-900">
+              <h2 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-200 dark:to-gray-400">
                 {room}
               </h2>
             </div>
@@ -53,7 +49,7 @@ const Index = () => {
         ))}
       </main>
       
-      <footer className="py-8 text-center text-sm text-muted-foreground mt-8 border-t border-gray-200">
+      <footer className="py-8 text-center text-sm text-muted-foreground mt-8 border-t border-gray-200 dark:border-gray-800">
         <p className="opacity-70 hover:opacity-100 transition-opacity">
           Smart Home Management System © {new Date().getFullYear()}
         </p>
