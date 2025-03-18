@@ -73,7 +73,7 @@ const Clock: React.FC = () => {
   
   return (
     <div 
-      className="glass rounded-2xl p-6 mb-8 animate-scale-in backdrop-blur-lg border-white/40 shadow-xl"
+      className="glass rounded-2xl p-6 mb-8 animate-scale-in backdrop-blur-lg border border-white/40 shadow-xl"
       style={{ 
         background: getTimeBasedGradient(),
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
