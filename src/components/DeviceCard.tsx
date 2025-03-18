@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react';
-import { Lightbulb, Fan, Tv, Thermometer, Lock } from 'lucide-react';
+import { Lightbulb, Fan, Tv, Thermometer, Lock, Activity, MoonStar } from 'lucide-react';
 import { Device } from '../hooks/useSmartHome';
 import { cn } from '../lib/utils';
 import { Slider } from './ui/slider';
+import { Progress } from './ui/progress';
 
 interface DeviceCardProps {
   device: Device;
@@ -25,6 +26,14 @@ const DeviceCard: React.FC<DeviceCardProps> = ({
           <Lightbulb 
             className={`w-6 h-6 transition-all duration-300 ${device.active 
               ? 'text-white animate-pulse-glow' 
+              : 'text-device-light/50'}`} 
+          />
+        );
+      case 'nightlamp':
+        return (
+          <MoonStar 
+            className={`w-6 h-6 transition-all duration-300 ${device.active 
+              ? 'text-white animate-pulse-slow' 
               : 'text-device-light/50'}`} 
           />
         );
@@ -55,6 +64,14 @@ const DeviceCard: React.FC<DeviceCardProps> = ({
       case 'security':
         return (
           <Lock 
+            className={`w-6 h-6 transition-all duration-300 ${device.active 
+              ? 'text-white' 
+              : 'text-device-security/50'}`} 
+          />
+        );
+      case 'meter':
+        return (
+          <Activity 
             className={`w-6 h-6 transition-all duration-300 ${device.active 
               ? 'text-white' 
               : 'text-device-security/50'}`} 
@@ -124,6 +141,42 @@ const DeviceCard: React.FC<DeviceCardProps> = ({
     }
   };
 
+  // Special card for meter devices
+  if (device.type === 'meter') {
+    return (
+      <div 
+        className="device-card glass animate-fade-in relative overflow-hidden bg-gradient-to-br from-blue-500/80 to-blue-700/80 hover:scale-105"
+        style={{
+          animationDelay: `${parseInt(device.id.split('-')[1]) * 100}ms`,
+          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+        }}
+      >
+        <div className="device-icon bg-blue-600 shadow-lg shadow-blue-600/30">
+          {getIcon()}
+        </div>
+        
+        <div className="mb-3">
+          <h3 className="font-medium text-white">{device.name}</h3>
+          <p className="text-xs text-white/80">
+            {device.subRoom ? `${device.room} - ${device.subRoom}` : device.room}
+          </p>
+        </div>
+        
+        <div className="mb-2 mt-4">
+          <div className="text-xs text-white/80 mb-1 flex justify-between">
+            <span>Realtime Power Consumption</span>
+            <span className="font-medium">Ready for Data</span>
+          </div>
+          <Progress value={0} className="h-2" />
+        </div>
+        
+        <p className="text-xs text-white/80 mt-3">
+          Connect to backend for realtime monitoring
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div 
       className={cn(
@@ -158,7 +211,7 @@ const DeviceCard: React.FC<DeviceCardProps> = ({
           "text-xs transition-colors duration-300",
           device.active ? "text-white/80" : "text-muted-foreground"
         )}>
-          {device.room}
+          {device.subRoom ? `${device.room} - ${device.subRoom}` : device.room}
         </p>
       </div>
       
@@ -177,6 +230,14 @@ const DeviceCard: React.FC<DeviceCardProps> = ({
             <span className="font-medium">{device.intensity}%</span>
             <span>Max</span>
           </div>
+        </div>
+      )}
+      
+      {device.meterData && (
+        <div className="mb-2 text-xs">
+          <p className={device.active ? "text-white/80" : "text-muted-foreground"}>
+            Power: {device.meterData.watts} W
+          </p>
         </div>
       )}
       
