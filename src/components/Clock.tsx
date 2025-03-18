@@ -61,16 +61,6 @@ const Clock: React.FC = () => {
     }
   };
   
-  // Calculate a color for the time display based on color phase
-  const getColorfulTimeDisplay = () => {
-    return {
-      background: `hsl(${colorPhase}, 80%, 60%)`,
-      backgroundClip: 'text',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-    };
-  };
-  
   return (
     <div 
       className="glass rounded-2xl p-6 mb-8 animate-scale-in backdrop-blur-lg border border-white/40 shadow-xl"
@@ -79,11 +69,10 @@ const Clock: React.FC = () => {
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
       }}
     >
-      <div className="flex flex-col items-center text-white">
-        <p className="text-sm font-medium opacity-90">{formatDate(time)}</p>
+      <div className="flex flex-col items-center">
+        <p className="text-sm font-medium text-black opacity-90">{formatDate(time)}</p>
         <h2 
-          className="text-4xl font-bold mt-2 tracking-tight"
-          style={getColorfulTimeDisplay()}
+          className="text-4xl font-bold mt-2 tracking-tight text-black"
         >
           {formatTime(time)}
         </h2>
