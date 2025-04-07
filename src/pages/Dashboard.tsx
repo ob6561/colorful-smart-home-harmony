@@ -193,10 +193,11 @@ const Dashboard = () => {
                     <ChartTooltip
                       content={({ active, payload }) => {
                         if (active && payload && payload.length) {
+                          const value = Number(payload[0].value);
                           return (
                             <div className="bg-background border rounded p-2 shadow-lg">
                               <p>{`Time: ${payload[0].payload.time}`}</p>
-                              <p className="text-red-500">{`Temperature: ${payload[0].value.toFixed(1)}°C`}</p>
+                              <p className="text-red-500">{`Temperature: ${typeof value === 'number' ? value.toFixed(1) : value}°C`}</p>
                             </div>
                           );
                         }
@@ -243,10 +244,11 @@ const Dashboard = () => {
                     <ChartTooltip
                       content={({ active, payload }) => {
                         if (active && payload && payload.length) {
+                          const value = Number(payload[0].value);
                           return (
                             <div className="bg-background border rounded p-2 shadow-lg">
                               <p>{`Time: ${payload[0].payload.time}`}</p>
-                              <p className="text-blue-500">{`Humidity: ${payload[0].value.toFixed(1)}%`}</p>
+                              <p className="text-blue-500">{`Humidity: ${typeof value === 'number' ? value.toFixed(1) : value}%`}</p>
                             </div>
                           );
                         }
@@ -293,10 +295,11 @@ const Dashboard = () => {
                     <ChartTooltip
                       content={({ active, payload }) => {
                         if (active && payload && payload.length) {
+                          const value = Number(payload[0].value);
                           return (
                             <div className="bg-background border rounded p-2 shadow-lg">
                               <p>{`Time: ${payload[0].payload.time}`}</p>
-                              <p className="text-green-500">{`CO₂: ${payload[0].value.toFixed(0)} ppm`}</p>
+                              <p className="text-green-500">{`CO₂: ${typeof value === 'number' ? value.toFixed(0) : value} ppm`}</p>
                             </div>
                           );
                         }
