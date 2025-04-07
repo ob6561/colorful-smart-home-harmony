@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Clock from '../components/Clock';
 import DeviceCard from '../components/DeviceCard';
@@ -34,6 +35,16 @@ const Index = () => {
       className="min-h-screen px-6 py-6 max-w-6xl mx-auto bg-background dark:bg-background"
     >
       <Header />
+      
+      <div className="flex justify-between items-center mb-6">
+        <div></div>
+        <Link 
+          to="/dashboard" 
+          className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-2 rounded-md font-medium transition-all shadow-md hover:shadow-lg"
+        >
+          View Dashboard
+        </Link>
+      </div>
       
       <main className="mt-6 animate-fade-in">
         <Clock />
